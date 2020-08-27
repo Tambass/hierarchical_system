@@ -1,5 +1,5 @@
-const path = require("path");
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
+
 const connectDB = require("./config/db");
 
 // Load config
@@ -80,7 +81,12 @@ app.use(function (req, res, next) {
 //Static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-const PORT = process.env.PORT || 3000;
+app.get('/',(req,res)=> {
+    res.render('login')
+})
+
+
+const PORT = process.env.PORT || 2020;
 
 app.listen(
   PORT,
